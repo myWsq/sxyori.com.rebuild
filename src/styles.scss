@@ -1,0 +1,70 @@
+/* icon font path, required */
+$--font-path: "~element-ui/lib/theme-chalk/fonts";
+
+@import "~element-ui/packages/theme-chalk/src/index";
+
+body {
+  margin: 0;
+  color: $--color-text-primary;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  margin: 0;
+}
+
+$spaceamounts: (
+  0,
+  1,
+  2,
+  3,
+  4,
+  5
+); // Adjust this to include the pixel amounts you need.
+$sides: (top, bottom, left, right, all); // Leave this variable alone
+
+@each $space in $spaceamounts {
+  @each $side in $sides {
+    .m#{str-slice($side, 0, 1)}-#{$space} {
+      @if $side == all {
+        margin: #{$space}em;
+      } @else {
+        margin-#{$side}: #{$space}em;
+      }
+    }
+
+    .p#{str-slice($side, 0, 1)}-#{$space} {
+      @if $side == all {
+        padding: #{$space}em;
+      } @else {
+        padding-#{$side}: #{$space}em;
+      }
+    }
+  }
+}
+
+$aligns: (left, center, right);
+
+@each $align in $aligns {
+  .text-#{$align} {
+    text-align: $align;
+  }
+}
+
+[class^="q-icon-"],
+[class*=" q-icon-"] {
+  font-family: "q-icon" !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  vertical-align: baseline;
+  display: inline-block;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

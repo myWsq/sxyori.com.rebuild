@@ -1,0 +1,27 @@
+<template>
+    <el-row type="flex" justify="space-between" class="toolbar" align="middle">
+        <h3><slot></slot></h3>
+        <el-link type="danger" icon="q-icon-logout">注销</el-link>
+    </el-row>
+</template>
+
+<script>
+export default {
+    name: "TheToolbar"
+};
+</script>
+
+<style lang="scss" scoped>
+.toolbar {
+    padding: 0 1em;
+    box-shadow: $--box-shadow-base;
+    height: $--toolbar-height;
+    background: $--color-white;
+    position: fixed;
+    top: 0;
+    left: $--sidebar-width;
+    right: 0;
+    z-index: 1;
+    min-width: $--body-width;
+}
+</style>
