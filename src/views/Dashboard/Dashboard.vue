@@ -5,11 +5,19 @@
         </aside>
         <main>
             <div class="app-content">
-                <router-view></router-view>
+                <keep-alive>
+                    <router-view></router-view>
+                </keep-alive>
             </div>
             <footer>
                 <div class="app-content">
-                    footer
+                    {{ $day().year() }} &copy;
+                    <el-link
+                        type="primary"
+                        href="https://sxyori.com"
+                        target="__blank"
+                        >sxyori.com</el-link
+                    >
                 </div>
             </footer>
         </main>
@@ -58,6 +66,7 @@ footer {
     align-items: center;
     .app-content {
         max-width: $--body-width;
+        text-align: right;
     }
 }
 </style>

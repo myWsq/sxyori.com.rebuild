@@ -2,6 +2,7 @@ import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
+import { DayJsPlugin } from "./plugins/day";
 
 import ElementUI from "element-ui";
 import TheToolbar from "./components/TheToolbar.vue";
@@ -11,6 +12,7 @@ import QUploader from "./components/QUploader.vue";
 import "./styles.scss";
 
 Vue.use(ElementUI);
+Vue.use(DayJsPlugin);
 Vue.component("TheToolbar", TheToolbar);
 Vue.component("TheContent", TheContent);
 Vue.component("QUploader", QUploader);

@@ -2,7 +2,7 @@
     <div>
         <the-toolbar>
             <el-row type="flex" align="middle">
-                <span>课程管理</span>
+                <span>公告/文章管理</span>
                 <el-button
                     type="success"
                     size="mini"
@@ -17,28 +17,21 @@
                 <el-table :data="source" border>
                     <el-table-column
                         sortable
-                        label="课程名"
-                        prop="name"
+                        label="标题"
+                        prop="title"
                     ></el-table-column>
                     <el-table-column
-                        label="课程介绍"
-                        prop="introduction"
+                        label="副标题"
+                        prop="subTitle"
                     ></el-table-column>
-                    <el-table-column label="授课教师">
+                    <el-table-column label="创建时间">
                         <template #default="{row}">
-                            <el-link
-                                v-for="item in row.teachers"
-                                :key="item.id"
-                                type="primary"
-                                class="mr-1"
-                            >
-                                {{ item.name }}
-                            </el-link>
+                            {{ $day(row.createdAt).format("lll") }}
                         </template>
                     </el-table-column>
-                    <el-table-column width="100" label="在首页显示">
+                    <el-table-column width="100" label="是否置顶">
                         <template #default="{row}">
-                            {{ row.isShow ? "是" : "否" }}
+                            {{ row.isTop ? "是" : "否" }}
                         </template>
                     </el-table-column>
                     <el-table-column width="200" label="操作">
@@ -79,11 +72,11 @@ export default {
     methods: {
         async fetch() {
             const loading = this.$loading({ fullscreen: true });
-            this.source = await DashboardService.getCourse();
+            this.source = await DashboardService.getPosts();
             loading.close();
         },
         async onDelete(item) {
-            const res = await DashboardService.deleteCourse(item.id);
+            const res = await DashboardService.deletePost(item.id);
             if (!res.code) {
                 this.$message.success("删除成功");
                 this.fetch();

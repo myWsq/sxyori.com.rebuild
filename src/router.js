@@ -37,6 +37,14 @@ const router = new Router({
                         import("./views/Dashboard/Course/Course.vue")
                 },
                 {
+                    path: "announcements",
+                    name: "dashboard-announcements",
+                    component: () =>
+                        import(
+                            "./views/Dashboard/Announcement/Announcement.vue"
+                        )
+                },
+                {
                     path: "chat",
                     name: "dashboard-chat",
                     component: () => import("./views/Dashboard/Chat/Chat.vue")

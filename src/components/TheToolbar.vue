@@ -1,13 +1,22 @@
 <template>
     <el-row type="flex" justify="space-between" class="toolbar" align="middle">
         <h3><slot></slot></h3>
-        <el-link type="danger" icon="q-icon-logout">注销</el-link>
+        <el-link type="danger" icon="q-icon-logout" @click="onLogout"
+            >注销</el-link
+        >
     </el-row>
 </template>
 
 <script>
 export default {
-    name: "TheToolbar"
+    name: "TheToolbar",
+    methods: {
+        onLogout() {
+            this.$store.commit("setMe", null);
+            this.$router.push("/");
+            localStorage.removeItem("token");
+        }
+    }
 };
 </script>
 

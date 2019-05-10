@@ -1,5 +1,10 @@
 export const TheSidebarConfig = [
     {
+        text: "客服系统",
+        path: "chat",
+        icon: "q-icon-chat"
+    },
+    {
         text: "教师信息管理",
         path: "teachers",
         icon: "q-icon-teacher"
@@ -11,13 +16,8 @@ export const TheSidebarConfig = [
     },
     {
         text: "公告管理",
-        path: "announcement",
+        path: "announcements",
         icon: "q-icon-announcement"
-    },
-    {
-        text: "客服系统",
-        path: "chat",
-        icon: "q-icon-chat"
     },
     {
         text: "用户管理",
