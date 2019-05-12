@@ -92,7 +92,7 @@ export default {
                         break;
                 }
             } else {
-                localStorage.setItem("token", body);
+                localStorage.setItem("admin-token", body);
                 this.$router.push({ name: "dashboard" });
             }
             this.loading--;

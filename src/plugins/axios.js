@@ -5,7 +5,7 @@ const _axios = axios.create();
 import router from "../router";
 
 _axios.interceptors.request.use(config => {
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("admin-token");
     if (token) {
         config.headers["Authorization"] = token;
     }
@@ -31,7 +31,7 @@ _axios.interceptors.response.use(
         const { statusCode } = err.response.data;
         switch (statusCode) {
             case 401:
-                localStorage.removeItem("token");
+                localStorage.removeItem("admin-token");
                 break;
             case 403:
                 router.replace("/403");

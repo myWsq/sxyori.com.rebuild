@@ -14,7 +14,7 @@ export default {
         onLogout() {
             this.$store.commit("setMe", null);
             this.$router.push("/");
-            localStorage.removeItem("token");
+            localStorage.removeItem("admin-token");
         }
     }
 };
