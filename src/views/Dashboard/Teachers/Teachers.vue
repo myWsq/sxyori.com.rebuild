@@ -61,16 +61,15 @@ export default {
             source: []
         };
     },
-    async beforeRouteEnter(to, from, next) {
-        const res = await DashboardService.getTeachers();
-        if (!res.code) {
-            next(vm => {
-                vm.source = res.body;
-            });
-        } else {
-            next(false);
-        }
+    beforeRouteEnter(to, from, next) {
+        next(vm => {
+            vm.openByUrlQuery();
+        });
     },
+    created() {
+        this.fetch();
+    },
+
     methods: {
         async fetch() {
             const res = await DashboardService.getTeachers();
@@ -83,6 +82,17 @@ export default {
             if (!res.code) {
                 this.$message.success("删除成功");
                 this.fetch();
+            }
+        },
+        openByUrlQuery() {
+            const curOpen = this.$route.query.open;
+            if (curOpen) {
+                this.source.some(item => {
+                    if (item.id == curOpen) {
+                        this.$refs.dialogModify.open(item);
+                        return true;
+                    }
+                });
             }
         }
     }

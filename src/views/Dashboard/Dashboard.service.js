@@ -56,6 +56,13 @@ export const DashboardService = {
         });
     },
 
+    setUserRole(id, role) {
+        return AxiosDefault.post("/api/user/role", {
+            id,
+            role
+        });
+    },
+
     getUserCourse(id) {
         return AxiosDefault.get(`/api/user/${id}/course`).then(
             res => res.body || []

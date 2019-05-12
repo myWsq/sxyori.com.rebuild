@@ -1,5 +1,10 @@
 <template>
-    <el-dialog :visible.sync="visible" :title="`${mode}教师信息`" width="600px">
+    <el-dialog
+        :visible.sync="visible"
+        :title="`${mode}教师信息`"
+        width="600px"
+        top="30px"
+    >
         <el-form :model="form">
             <el-form-item label="姓名" prop="name">
                 <el-input

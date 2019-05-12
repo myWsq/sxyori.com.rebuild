@@ -52,8 +52,9 @@ main {
     display: flex;
     flex-direction: column;
     padding-left: $--sidebar-width;
+
     .app-content {
-        width: $--body-width;
+        min-width: #{$--body-width - $--sidebar-width};
         margin: 0 auto;
         flex: 1;
     }
@@ -65,7 +66,6 @@ footer {
     justify-content: center;
     align-items: center;
     .app-content {
-        max-width: $--body-width;
         text-align: right;
     }
 }

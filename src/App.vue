@@ -22,5 +22,6 @@ export default {
 <style lang="scss">
 #app {
     background: $--background-color-base;
+    min-width: $--body-width;
 }
 </style>

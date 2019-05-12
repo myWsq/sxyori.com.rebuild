@@ -1,5 +1,10 @@
 <template>
-    <el-dialog :visible.sync="visible" :title="`${mode}文章信息`" width="800px">
+    <el-dialog
+        :visible.sync="visible"
+        :title="`${mode}文章信息`"
+        width="800px"
+        top="30px"
+    >
         <el-form :model="form">
             <el-form-item label="标题" required>
                 <el-input

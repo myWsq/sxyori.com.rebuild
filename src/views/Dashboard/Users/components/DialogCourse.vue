@@ -50,6 +50,12 @@
                                 :key="item.id"
                                 type="primary"
                                 class="mr-1"
+                                @click="
+                                    visible = false;
+                                    $router.push(
+                                        '/dashboard/teachers?open=' + item.id
+                                    );
+                                "
                             >
                                 {{ item.name }}
                             </el-link>

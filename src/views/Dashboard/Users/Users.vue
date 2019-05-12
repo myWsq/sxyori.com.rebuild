@@ -11,7 +11,7 @@
                     <el-tab-pane label="普通用户"></el-tab-pane>
                     <el-tab-pane label="管理员"></el-tab-pane>
                 </template>
-                <el-table :data="source" border>
+                <el-table :data="source.filter(item => !item._hidden)" border>
                     <el-table-column
                         sortable
                         label="用户名"
@@ -37,22 +37,24 @@
                     </el-table-column>
                     <el-table-column width="200" label="操作">
                         <template #default="{row}">
-                            <el-link @click="$refs.dialogModify.open(row)"
+                            <el-link
+                                v-if="row.role === 'PUBLIC'"
+                                @click="$refs.dialogModify.open(row)"
                                 >查看课程</el-link
                             >
                             <template v-if="isSuperAdmin">
                                 <el-link
-                                    v-if="row.role === 'NORMAL'"
+                                    v-if="row.role === 'PUBLIC'"
                                     type="primary"
                                     class="ml-1"
-                                    @click="onDelete(row)"
+                                    @click="onSetRole(row, 'ADMIN')"
                                     >设为管理员</el-link
                                 >
                                 <el-link
                                     v-else
                                     type="danger"
                                     class="ml-1"
-                                    @click="onDelete(row)"
+                                    @click="onSetRole(row, 'PUBLIC')"
                                     >移除管理员</el-link
                                 >
                             </template>
@@ -103,9 +105,16 @@ export default {
             if (e.index === "0") {
                 this.roles = ["PUBLIC"];
             } else {
-                this.roles = ["PUBLIC", "ADMIN"];
+                this.roles = ["ADMIN"];
             }
             this.fetch();
+        },
+        async onSetRole(row, role) {
+            this.$set(row, "_hidden", true);
+            const res = DashboardService.setUserRole(row.id, role);
+            if (res.code) {
+                this.$set(row, "_hidden", false);
+            }
         }
     }
 };

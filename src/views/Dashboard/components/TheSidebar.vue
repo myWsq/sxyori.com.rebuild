@@ -47,7 +47,7 @@ ul {
     &:hover {
         background: $--background-color-base;
     }
-    &.router-link-exact-active {
+    &.router-link-active {
         color: $--color-primary;
         background: $--background-color-base;
     }

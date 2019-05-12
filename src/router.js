@@ -71,7 +71,11 @@ router.beforeEach(async (to, from, next) => {
         } else {
             try {
                 await store.dispatch("getMe");
-                next();
+                if (store.state.me) {
+                    next();
+                } else {
+                    next("/");
+                }
             } catch (e) {
                 next("/");
             }
